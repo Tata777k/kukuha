@@ -1,0 +1,33 @@
+from random import randint
+a = []
+for i in range(10):
+  a.append(randint(1, 50))
+def qsort(a):
+    if len(a)<=1:
+        return a
+    elem = a[0]
+    left = list(filter(lambda x: x< elem, a))
+    midle = [i for i in a if i== elem]
+    right = list(filter(lambda x: x > elem, a))
+    return qsort(left) + midle + qsort(right)
+a=qsort(a)
+print(a)
+value = int(input('Введите число не выходящее за границы списка:'))
+def bsearch(a, value):
+    mid = len(a)//2
+    low = 0
+    high = len(a)
+    if a[0] >= value or value>= a[-1]:
+        raise Exception('Значение не соответствует условиям')
+    while low < high-1:
+        print(low,mid,high, value, a[mid])
+        if value >= a[mid]:
+          low = mid 
+        else:
+          high = mid 
+        mid = (low + high)//2
+    if value < a[high-1]:
+         mid = high - 1
+    return mid 
+m=bsearch(a, value)
+print(a[m], m)
